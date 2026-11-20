@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">nor-Bench</string>
+    <!-- Dòng mô tả dưới logo ở màn hình mở app. Muốn đổi thì sửa chữ ở dòng này. -->
+    <string name="splash_tagline">Đo thật. Đo đến cùng.</string>
+</resources>

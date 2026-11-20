@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Số lần build trên GitHub (1, 2, 3...) làm versionCode, để mỗi bản mới luôn "mới hơn" bản đã cài.
+def runNumber = (System.getenv('GITHUB_RUN_NUMBER') ?: '1').toInteger()
+
+android {
+    namespace 'com.norbench.app'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.norbench.app'
+        minSdk 29
+        targetSdk 34
+        versionCode runNumber
+        versionName "3.5c1-b${runNumber}"
+    }
+
+    // Khóa ký CỐ ĐỊNH: mọi bản build cùng một chữ ký thì mới cài đè lên bản cũ mà không mất dữ liệu.
+    signingConfigs {
+        debug {
+            storeFile file('nor-bench.keystore')
+            storePassword 'norbench'
+            keyAlias 'norbench'
+            keyPassword 'norbench'
+            storeType 'pkcs12'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
